@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 var pool = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    host: "localhost",
+    user: "root",
+    password: "Mysql@123",
+    database: "test"
   });
   
   pool.connect(function(err) {

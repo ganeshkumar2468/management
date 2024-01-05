@@ -1,34 +1,19 @@
 const express = require("express")
-const hbs = require('express-handlebars')
-var bodyParser = require('body-parser')
-var mysql = require('mysql');
-require('dotenv').config()
-require("./config/config")
-const router = require("./server/routes/user")
-const app = express()
-
-const port = process.env.PORT || 5000
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
-app.use(bodyParser.json())
-
-
-
-//handlebar setup
-
-app.engine('handlebars', hbs.engine());
-app.set('view engine', 'handlebars');
-app.set('views', './views');
-
-app.use("/",router)
-
+const  router  = require("./api/users/user.router")
+// intialization of express application
+const app = express();
+app.use(express.json());
+require("dotenv").config();
 app.get("/api",(req,res)=>{
-    res.json({
-        success:1,
-        message:"this is rest apis working"
-    })
-    
+        res.json({
+            success:1,
+            message:"this is rest api working"
+        })
 })
-app.listen(5000,()=>console.log(`server is listening on port ${port}`));
+
+app.listen(5004,()=>{
+       console.log("server running in PORT :5004")
+    }
+)
+
+app.use("/api/users",router)
