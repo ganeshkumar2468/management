@@ -24,8 +24,11 @@ app.set('views', './views');
 
 app.use("/",router)
 
-app.get("",(req,res)=>{
-    res.render("home")
+app.get("/api",(req,res)=>{
+    res.json({
+        success:1,
+        message:"this is rest apis working"
+    })
     
 })
 app.listen(5000,()=>console.log(`server is listening on port ${port}`));
